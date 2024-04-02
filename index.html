@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Jorge Luis Vasquez" />
+    <meta
+      name="description"
+      content="Un espacio para descubrir los mejores paisajes de los Estados Unidos"
+    />
+    <meta name="keywords" content="places,lugares,USA, tripleten" />
+    <title>Alrededor de los EE.UU</title>
+    <link rel="shortcut icon" href=".//favicon.webp" />
+    <link rel="stylesheet" href="./pages/index.css" />
+  </head>
+
+  <body class="body">
+    <div class="page">
+      <header class="header">
+        <img
+          class="header__image"
+          src="./images/logo.svg"
+          alt="logo, lugares EE.UU"
+        />
+      </header>
+
+      <main class="main">
+        <section class="profile">
+          <div class="porfile__content">
+            <img
+              class="porfile__picture"
+              src="./images/Avatar.png"
+              alt="imagen de un explorador"
+            />
+            <div class="porfile__text">
+              <h1 class="porfile__title">Jacques Cousteau</h1>
+              <h2 class="porfile__subtitle">Explorador</h2>
+            </div>
+            <button class="porfile__edit-button"></button>
+            <button class="porfile__add-button"></button>
+          </div>
+          <div id="editPopup" class="popup"> <!--popup perfil de explorador-->
+            <div class="popup__container">
+              <h2>Editar Perfil</h2>
+              <input
+                type="text"
+                id="editTitle"
+                placeholder="Jacques Cousteau"
+              /><br />
+              <input
+                type="text"
+                id="editSubtitle"
+                placeholder="Explorador"
+              /><br />
+              <button id="saveChanges">Guardar</button>
+            </div>
+            <button class="popup__close-edit"></button>
+          </div>
+        </section>
+
+        <section class="cards"> <!--esta sección contiene las cards-->
+          <div class="cards__one">
+            <button class="cards__one-trash"></button>
+            <img
+              class="cards__one-image"
+              src=".//images/valle_de_yosemite.jpg" alt="valle_de_yosemite"
+            />
+            <h3 class="cards__one-name">
+              Valle de Yosemite
+              <span><button class="cards__one-heart"></button></span>
+            </h3>
+          </div>
+          <div class="cards__two">
+            <button class="cards__one-trash"></button>
+            <img class="cards__two-image" src=".//images/Mount_Rushmore.jpg" alt="Monte_Rushmore"/>
+            <h3 class="cards__two-name">
+              Monte Rushmore
+              <span> <button class="cards__one-heart"></button></span>
+            </h3>
+          </div>
+          <div class="cards__three">
+            <button class="cards__one-trash"></button>
+            <img class="cards__three-image" src=".//images/gran-canon.jpeg" alt="gran-canon" />
+            <h3 class="cards__three-name">
+              Gran Cañon
+              <span> <button class="cards__one-heart"></button></span>
+            </h3>
+          </div>
+          <div class="cards__for">
+            <button class="cards__one-trash"></button>
+            <img class="cards__for-image" src=".//images/lago_Tahoe.jpg" alt="lago_Tahoe" />
+            <h3 class="cards__for-name">
+              Lago Tahoe
+              <span> <button class="cards__one-heart"></button></span>
+            </h3>
+          </div>
+          <div class="cards__five">
+            <button class="cards__one-trash"></button>
+            <img class="cards__five-image" src=".//images/ruta_66.webp" alt="ruta_66"/>
+            <h3 class="cards__five-name">
+              Ruta 66 <span> <button class="cards__one-heart"></button></span>
+            </h3>
+          </div>
+          <div class="cards__six">
+            <button class="cards__one-trash"></button>
+            <img class="cards__six-image" src=".//images/Roswell.webp" alt="Roswell" />
+            <h3 class="cards__six-name">
+              Roswell <span> <button class="cards__one-heart"></button></span>
+            </h3>
+          </div>
+
+          <!---abrir un popup que muestra las imagenes-->
+
+          <div id="modal" class="modal">
+            <span class="close">&amp;</span>
+            <img id="modal-image" class="modal-content" alt="modal-imagen" src="./images/modal_image.jpg"/>
+
+            <div id="modal-caption"></div>
+          </div>
+
+          <!--pop up que permite añadir un nuevo lugar-->
+          <div id="addPopup" class="popup popup__add">
+            <div class="popup__container">
+              <h2>Nuevo lugar</h2>
+              <input type="text" id="editPlace" placeholder="Título" /><br />
+              <input
+                type="text"
+                id="editImage"
+                placeholder="Enlace a la imagen"
+              /><br />
+              <button id="saveChangesEdit">Crear</button>
+            </div>
+            <button class="popup__close-add"></button>
+          </div>
+        </section>
+        <footer class="footer">
+          <p>&copy; 2024 Jorge Luis Vasquez</p>
+        </footer>
+      </main>
+    </div>
+    <script src="./script/script.js"></script>
+  </body>
+</html>
