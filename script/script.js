@@ -39,6 +39,7 @@ saveChangesButton.style.color = "white";
 saveChangesButton.style.border = "none";
 saveChangesButton.style.padding = "10px 20px";
 saveChangesButton.style.cursor = "pointer";
+saveChangesButton.style.marginTop = "30px";
 saveChangesButton.addEventListener("mouseenter", function () {
   saveChangesButton.style.opacity = 0.5;
 });
@@ -84,6 +85,7 @@ saveChangesButtonEdit.style.border = "none";
 saveChangesButtonEdit.style.padding = "10px 20px";
 saveChangesButtonEdit.style.cursor = "pointer";
 saveChangesButtonEdit.style.width = "inherit";
+saveChangesButtonEdit.style.marginTop = "30px";
 
 //opacidad sobre el botón
 saveChangesButtonEdit.addEventListener("mouseenter", function () {
