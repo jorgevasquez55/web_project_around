@@ -87,7 +87,7 @@ border-radius: 5%;
 .cards__two-image{
   width: 282px;
   height: 282px;
-  border-radius: 5% 5% 0%  0%  ;
+  border-radius: 5% 5% 0 0;
 }
 
 .cards__two-name{
@@ -105,7 +105,7 @@ border-radius: 5%;
 .cards__three-image{
   width: 282px;
   height: 282px;
-  border-radius: 5% 5%  0%  0% ;
+  border-radius: 5% 5%  0  0;
 }
 
 .cards__three-name{
@@ -121,7 +121,7 @@ border-radius: 5%;
 .cards__for-image{
   width: 282px;
   height: 282px;
-  border-radius: 5% 5% 0%  0%  ;
+  border-radius: 5% 5% 0  0;
 }
 
 .cards__for-name{
@@ -139,7 +139,7 @@ border-radius: 5%;
 .cards__five-image{
   width: 282px;
   height: 282px;
-  border-radius: 5% 5% 0%  0%  ;
+  border-radius: 5% 5% 0  0;
 }
 
 .cards__five-name{
