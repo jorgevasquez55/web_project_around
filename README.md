@@ -14,3 +14,5 @@ Para la funcionalidad de la página se utilizó:
 
 
 Mediante el siguiente link se puede observar el proyecto.
+
+https://jorgevasquez55.github.io/web_project_around/
