@@ -34,7 +34,7 @@ border-radius: 5%;
 .cards__one-image{
   width: 282px;
   height: 282px;
-  border-radius: 5%  5% 0%  0%  ;
+  border-radius: 5%  5% 0  0;
 }
 .cards__one-heart.select {
   background-image: url(../images/active_heart.svg);
@@ -159,7 +159,7 @@ border-radius: 5%;
 .cards__six-image{
   width: 282px;
   height: 282px;
-  border-radius: 5% 5% 0%  0%  ;
+  border-radius: 5% 5% 0  0;
 }
 
 .cards__six-name{
