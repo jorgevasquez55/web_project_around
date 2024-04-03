@@ -1,4 +1,4 @@
-.porfile__content-title {
+.profile__content-title {
   font-weight: 500;
   font-size: 2.6rem;
   margin-bottom: 0px;
@@ -7,12 +7,12 @@
   overflow: hidden;
 }
 @media screen and (max-width: 320px) {
-  .porfile__content-itle {
+  .profile__content-itle {
     font-size: 1.5rem;
   }
 }
 
-.porfile__content-subtitle {
+.profile__content-subtitle {
   font-weight: 400;
   font-size: 1rem;
   text-overflow: ellipsis;
@@ -20,12 +20,12 @@
   overflow: hidden;
 }
 @media screen and (max-width: 320px) {
-  .porfile__content-subtitle {
+  .profile__content-subtitle {
     font-size: 0.8rem;
   }
 }
 
-.porfile__content {
+.profile__content {
   width: 882px;
   height: 120px;
   padding-left: 199px;
@@ -35,19 +35,19 @@
 }
 
 @media screen and (max-width: 320px) {
-  .porfile__content {
+  .profile__content {
     padding-left: 100px;
     display: inline;
   }
 }
 
-.porfile__content-text {
+.profile__content-text {
   padding-left: 50px;
   width: 444px;
   height: 77px;
 }
 
-.porfile__content-edit {
+.profile__content-edit {
   width: 24px;
   height: 24px;
   margin-top: 40px;
@@ -57,17 +57,17 @@
 }
 
 @media screen and (max-width: 320px) {
-  .porfile__content-edit {
+  .profile__content-edit {
     margin-left: 50px;
   }
 }
 
-.porfile__content-edit:hover {
+.profile__content-edit:hover {
   cursor: pointer;
   opacity: 0.5;
 }
 
-.porfile__content-add {
+.profile__content-add {
   width: 150px;
   height: 50px;
   margin-top: 30px;
@@ -77,12 +77,12 @@
   border-style: hidden;
 }
 @media screen and (max-width: 320px) {
-  .porfile__content-add {
+  .profile__content-add {
     margin-left: 50px;
   }
 }
 
-.porfile__content-add:hover {
+.profile__content-add:hover {
   cursor: pointer;
   opacity: 0.5;
 }
