@@ -1,6 +1,6 @@
 // popup de editar el perfil explorador. (perfil)
 document
-  .querySelector(".porfile__content-button-edit")
+  .querySelector(".porfile__content__button-edit")
   .addEventListener("click", function () {
     document.getElementById("editPopup").style.display = "block";
   });
@@ -9,8 +9,8 @@ document
 document.getElementById("saveChanges").addEventListener("click", function () {
   var newTitle = document.getElementById("editTitle").value;
   var newSubtitle = document.getElementById("editSubtitle").value;
-  document.querySelector(".porfile__content-title").textContent = newTitle;
-  document.querySelector(".porfile__content-subtitle").textContent = newSubtitle;
+  document.querySelector(".porfile__content__title").textContent = newTitle;
+  document.querySelector(".porfile__content__subtitle").textContent = newSubtitle;
   document.getElementById("editPopup").style.display = "none";
 });
 
@@ -52,7 +52,7 @@ saveChangesButton.addEventListener("mouseleave", function () {
 
 //popup de añadir lugar (cards)
 document
-  .querySelector(".porfile__content-button-add")
+  .querySelector(".porfile__content__button-add")
   .addEventListener("click", function () {
     document.getElementById("addPopup").style.display = "block";
   });
