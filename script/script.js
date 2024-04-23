@@ -7,8 +7,8 @@ document
 
 // aqui se guardan los cambios-
 document.getElementById("saveChanges").addEventListener("click", function () {
-  var newTitle = document.getElementById("editTitle").value;
-  var newSubtitle = document.getElementById("editSubtitle").value;
+  let newTitle = document.getElementById("editTitle").value;
+  let newSubtitle = document.getElementById("editSubtitle").value;
   document.querySelector(".profile__content-title").textContent = newTitle;
   document.querySelector(".profile__content-subtitle").textContent = newSubtitle;
   document.getElementById("editPopup").style.display = "none";
@@ -20,6 +20,7 @@ document
   .addEventListener("click", function () {
     document.getElementById("editPopup").style.display = "none";
   });
+
 
 // modificando el estilo del popup con DOM (popup editar)
 const editTitle = document.getElementById("editTitle");
@@ -56,6 +57,69 @@ document
   .addEventListener("click", function () {
     document.getElementById("addPopup").style.display = "block";
   });
+
+
+
+
+//aqui se eliminan las cards
+function removeCard(trashButton) {
+  trashButton.addEventListener("click", function() {
+      let card = trashButton.closest(".cards__one, .cards__two, .cards__three, .cards__for, .cards__five, .cards__six, .cards__new");
+      // Eliminar la tarjeta del DOM
+      card.remove();
+  });
+}
+function addTrashButtonEvents() {
+  let trashButtons = document.querySelectorAll(".cards__one-trash, .cards__two-trash, .cards__three-trash, .cards__for-trash, .cards__five-trash, .cards__six-trash");
+  trashButtons.forEach(function(trashButton) {
+      removeCard(trashButton);
+  });
+}
+
+addTrashButtonEvents();
+
+//aqui se añade un nuevo lugar card
+
+document.getElementById("saveChangesEdit").addEventListener("click", function () {
+  let title = document.getElementById("editPlace").value;
+  let imageUrl = document.getElementById("editImage").value;
+
+  let newCard = document.createElement("div");
+  newCard.classList.add("cards__new");
+
+  let trashButton = document.createElement("button");
+  trashButton.classList.add("cards__one-trash");
+
+  let image = document.createElement("img");
+  image.classList.add("cards__new-image");
+  image.src = imageUrl;
+  image.alt = title;
+
+  let name = document.createElement("h3");
+  name.classList.add("cards__new-name");
+  name.textContent = title;
+
+  let span = document.createElement("span");
+  let heartButton = document.createElement("button");
+  heartButton.classList.add("cards__one-heart");
+
+  span.appendChild(heartButton);
+  name.appendChild(span);
+  newCard.appendChild(trashButton);
+  newCard.appendChild(image);
+  newCard.appendChild(name);
+
+  let cardsSection = document.querySelector(".cards");
+  cardsSection.insertBefore(newCard, cardsSection.firstChild);
+
+
+  document.getElementById("addPopup").style.display = "none";
+  document.getElementById("editPlace").value = "";
+  document.getElementById("editImage").value = "";
+  removeCard(trashButton);
+  addTrashButtonEvents();
+});
+
 
 // aqui se cierra la ventana
 document
@@ -99,16 +163,17 @@ saveChangesButtonEdit.addEventListener("mouseleave", function () {
 //corazon (like)
 
 document.addEventListener("DOMContentLoaded", function () {
-  var heartButtons = document.querySelectorAll(".cards__one-heart");
+  let heartButtons = document.querySelectorAll(".cards__one-heart");
 
   heartButtons.forEach(function (button) {
     button.addEventListener("click", function () {
-      var image = this.parentNode.querySelector(".cards__one-heart");
+      let image = this.parentNode.querySelector(".cards__one-heart");
       image.classList.toggle("select");
     });
   });
 });
 
+//abrir ventanas para popup de imagenes
 document.addEventListener("DOMContentLoaded", function () {
   const cards = document.querySelectorAll(".cards__one");
 
@@ -116,7 +181,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const image = card.querySelector(".cards__one-image");
     const name = card.querySelector(".cards__one-name").textContent;
 
-    //para abrir las imagenes
 
     image.addEventListener("click", function () {
       const modal = document.getElementById("modal");
@@ -255,6 +319,31 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const cards = document.querySelectorAll(".cards__new");
+
+  cards.forEach(function (card) {
+    const image = card.querySelector(".cards__new-image");
+    const name = card.querySelector(".cards__new-name").textContent;
+
+    image.addEventListener("click", function () {
+      const modal = document.getElementById("modal");
+      const modalImage = document.getElementById("modal-image");
+      const modalCaption = document.getElementById("modal-caption");
+
+      modal.style.display = "block";
+      modalImage.src = image.src;
+      modalCaption.textContent = name;
+    });
+  });
+
+  const close = document.getElementsByClassName("close")[0];
+  close.addEventListener("click", function () {
+    document.getElementById("modal").style.display = "none";
+  });
+});
+
+
 // modificar elemento de la ventana modal
 const modalCaption = document.getElementById("modal-caption");
 modalCaption.style.color = "#ffff";
@@ -264,7 +353,7 @@ modalCaption.style.marginTop = "20px";
 modalCaption.style.marginLeft = "60px";
 
 // Verificar el ancho de la ventana
-var windowWidth = window.innerWidth;
+let windowWidth = window.innerWidth;
 
 // Establecer el margen izquierdo dependiendo del ancho de la ventana
 if (windowWidth <= 320) {

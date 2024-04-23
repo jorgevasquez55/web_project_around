@@ -166,3 +166,23 @@ border-radius: 5%;
   margin-left: 20px;
   display: block ruby;
 }
+
+.cards__new{
+  width: 282px;
+height: 361px;
+background-color: #ffff;
+border-radius: 5%;
+}
+
+.cards__new-image{
+  width: 282px;
+  height: 282px;
+  border-radius: 5% 5% 0  0;
+
+}
+
+.cards__new-name{
+  margin-left: 20px;
+  display: block ruby;
+
+}
