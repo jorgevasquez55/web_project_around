@@ -60,7 +60,6 @@ document
 
 
 
-
 //aqui se eliminan las cards
 function removeCard(trashButton) {
   trashButton.addEventListener("click", function() {
@@ -96,7 +95,7 @@ document.getElementById("saveChangesEdit").addEventListener("click", function ()
   image.alt = title;
 
   let name = document.createElement("h3");
-  name.classList.add("cards__new-name");
+  name.classList.add("cards__one-name");
   name.textContent = title;
 
   let span = document.createElement("span");
@@ -119,6 +118,7 @@ document.getElementById("saveChangesEdit").addEventListener("click", function ()
   removeCard(trashButton);
   addTrashButtonEvents();
 });
+
 
 
 // aqui se cierra la ventana
@@ -319,29 +319,30 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  const cards = document.querySelectorAll(".cards__new");
+// Función para manejar el clic en las tarjetas
+function handleCardClick(event) {
+  if (event.target.classList.contains("cards__new-image")) {
+    const modal = document.getElementById("modal");
+    const modalImage = document.getElementById("modal-image");
+    const modalCaption = document.getElementById("modal-caption");
 
-  cards.forEach(function (card) {
-    const image = card.querySelector(".cards__new-image");
-    const name = card.querySelector(".cards__new-name").textContent;
+    modal.style.display = "block";
+    modalImage.src = event.target.src;
+    modalCaption.textContent = event.target.alt;
+  }
+}
 
-    image.addEventListener("click", function () {
-      const modal = document.getElementById("modal");
-      const modalImage = document.getElementById("modal-image");
-      const modalCaption = document.getElementById("modal-caption");
+document.querySelectorAll(".cards__new-image").forEach(function(image) {
+  image.addEventListener("click", handleCardClick);
+});
 
-      modal.style.display = "block";
-      modalImage.src = image.src;
-      modalCaption.textContent = name;
-    });
-  });
-
-  const close = document.getElementsByClassName("close")[0];
-  close.addEventListener("click", function () {
-    document.getElementById("modal").style.display = "none";
+document.getElementById("saveChangesEdit").addEventListener("click", function () {
+  document.querySelectorAll(".cards__new-image").forEach(function(image) {
+    image.addEventListener("click", handleCardClick);
   });
 });
+
+
 
 
 // modificar elemento de la ventana modal
@@ -361,3 +362,4 @@ if (windowWidth <= 320) {
 } else {
   modalCaption.style.marginLeft = "60px";
 }
+
