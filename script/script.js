@@ -92,7 +92,6 @@ document.getElementById("saveChangesEdit").addEventListener("click", function ()
   let image = document.createElement("img");
   image.classList.add("cards__new-image");
   image.src = imageUrl;
-  image.alt = title;
 
   let name = document.createElement("h3");
   name.classList.add("cards__one-name");
@@ -111,6 +110,7 @@ document.getElementById("saveChangesEdit").addEventListener("click", function ()
   let cardsSection = document.querySelector(".cards");
   cardsSection.insertBefore(newCard, cardsSection.firstChild);
 
+  document.getElementById("modal-image").alt = title;
 
   document.getElementById("addPopup").style.display = "none";
   document.getElementById("editPlace").value = "";
@@ -362,4 +362,25 @@ if (windowWidth <= 320) {
 } else {
   modalCaption.style.marginLeft = "60px";
 }
+
+// codigo para cambiar el atributo alt de forma dinamica
+let modal = document.getElementById("modal");
+let img = document.querySelectorAll(" .cards__one-image, .cards__two-image, .cards__three-image, .cards__for-image, .cards__five-image, .cards__six-image, .cards-new-image");
+let modalImg = document.getElementById("modal-image");
+let captionText = document.getElementById("modal-caption");
+
+img.forEach(function(el) {
+  el.onclick = function() {
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    modalImg.alt = this.alt;
+    captionText.innerHTML = this.alt;
+  }
+});
+
+let span = document.getElementsByClassName("close")[0];
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
 
