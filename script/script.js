@@ -4,13 +4,12 @@ document.addEventListener("DOMContentLoaded", function() {
   const editButton = document.querySelector(".profile__content-edit");
   const editPopup = document.getElementById("editPopup");
 
-  // Evento para abrir la ventana emergente al hacer clic en el botón de edición
   editButton.addEventListener("click", function (event) {
     editPopup.style.display = "block";
-    event.stopPropagation(); // Evitar que el evento se propague al documento
+    event.stopPropagation();
   });
 
-  // Evento para guardar los cambios
+  // guardar los cambios
   document.getElementById("saveChanges").addEventListener("click", function () {
     const newTitle = document.getElementById("editTitle").value;
     const newSubtitle = document.getElementById("editSubtitle").value;
@@ -21,19 +20,19 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
-  // Evento para cerrar la ventana emergente haciendo clic en cualquier parte fuera de ella
+  //  cerrar la ventana emergente haciendo clic en cualquier parte fuera de ella
   document.addEventListener("click", function(event) {
     if (event.target !== editPopup && !editPopup.contains(event.target) && event.target !== editButton) {
       editPopup.style.display = "none";
     }
   });
 
-  // Evento para cerrar la ventana emergente haciendo clic en el botón de cierre
+  // cerrar la ventana emergente haciendo clic en el botón de cierre
   document.querySelector(".popup__close-edit").addEventListener("click", function () {
     editPopup.style.display = "none";
   });
 
-  // Evento para cerrar la ventana emergente cuando se presiona la tecla "Esc"
+  // cerrar la ventana emergente cuando se presiona la tecla "Esc"
   document.addEventListener("keydown", function(event) {
     if (event.key === "Escape") {
       editPopup.style.display = "none";
@@ -233,7 +232,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   close.addEventListener("click", closeModal);
 
-  // Event listener para abrir el modal al hacer clic en las "cards" de imágenes
   document.querySelectorAll(".cards__new-image").forEach(function(element) {
     element.addEventListener("click", function(event) {
       const imageName = element.alt;
@@ -242,14 +240,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Event listener para cerrar el modal al presionar la tecla Escape
   document.addEventListener("keydown", function(event) {
     if (event.key === "Escape") {
       closeModal();
     }
   });
-
-  // Event listener para cerrar el modal al hacer clic fuera de él
   window.addEventListener("click", function(event) {
     if (event.target === modal) {
       closeModal();
