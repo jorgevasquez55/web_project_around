@@ -40,24 +40,17 @@
             <button class="profile__content-add"></button>
           </div>
 
-        </section>
         <div id="editPopup" class="popup">
           <!--popup perfil de explorador-->
           <div class="popup__container">
             <h2>Editar Perfil</h2>
-            <input
-              type="text"
-              id="editTitle"
-              placeholder="Jacques Cousteau"
-            />
-            <input
-              type="text"
-              id="editSubtitle"
-              placeholder="Explorador"
-            />
-            <button id="saveChanges">Guardar</button>
-          </div>
-          <button class="popup__close-edit"></button>
+            <input type="text" id="editTitle" placeholder="Jacques Cousteau" onblur="validateTitle(this.value)">
+            <span id="titleError" class="error-message"></span>
+            <input type="text" id="editSubtitle" placeholder="Explorador" onblur="validateSubtitle(this.value)">
+            <span id="subtitleError" class="error-message"></span>
+            <button id="saveChanges" disabled>Guardar</button>
+        </div>
+        <button class="popup__close-edit"></button>
         </div>
 
         <section class="cards">
@@ -137,38 +130,35 @@
 
           <!---abrir un popup que muestra las imagenes-->
 
-          <div id="modal" class="modal">
-            <span class="close">&amp;</span>
-            <img
-              id="modal-image"
-              class="modal-content"
-              alt="modal-imagen"
-              src="./images/modal_image.jpg"
-            />
-            <div id="modal-caption"></div>
-      </div>
+
+<div id="modal" class="modal">
+  <span class="close">&amp;</span>
+  <img id="modal-image" class="modal-content" alt="modal-imagen">
+  <div id="modal-caption"></div>
+</div>
+
 
         </section>
 
        <!--pop up que permite añadir un nuevo lugar-->
-     <div id="addPopup" class="popup">
-      <div class="popup__container">
-        <h2>Nuevo lugar</h2>
-        <input type="text" id="editPlace" placeholder="Título" />
-        <input
-          type="text"
-          id="editImage"
-          placeholder="Enlace a la imagen"
-        />
-        <button id="saveChangesEdit">Crear</button>
+       <div id="addPopup" class="popup">
+        <div class="popup__container">
+          <h2>Nuevo lugar</h2>
+          <input type="text" id="editPlace" placeholder="Título" />
+          <span id="editPlaceError" class="error"></span>
+          <input type="text" id="editImage" placeholder="Enlace a la imagen" />
+          <span id="editImageError" class="error"></span>
+          <button id="saveChangesEdit" disabled>Crear</button>
+        </div>
+        <button class="popup__close-add"></button>
       </div>
-      <button class="popup__close-add"></button>
-    </div>
+
         <footer class="footer">
           <p>&copy; 2024 Jorge Luis Vasquez</p>
         </footer>
       </main>
     </div>
     <script src="./script/script.js"></script>
+    <script src="./script/validate.js"></script>
   </body>
 </html>

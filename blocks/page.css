@@ -66,3 +66,16 @@ margin-top: 300px;
   cursor:pointer;
   opacity: 0.5;
 }
+
+.error{
+  color: red;
+}
+
+
+.error-border {
+  color: red;
+}
+
+.error-message{
+  color:red;
+}

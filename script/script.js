@@ -1,25 +1,46 @@
-// popup de editar el perfil explorador. (perfil)
-document
-  .querySelector(".profile__content-edit")
-  .addEventListener("click", function () {
-    document.getElementById("editPopup").style.display = "block";
+
+//editar perfil
+document.addEventListener("DOMContentLoaded", function() {
+  const editButton = document.querySelector(".profile__content-edit");
+  const editPopup = document.getElementById("editPopup");
+
+  // Evento para abrir la ventana emergente al hacer clic en el botón de edición
+  editButton.addEventListener("click", function (event) {
+    editPopup.style.display = "block";
+    event.stopPropagation(); // Evitar que el evento se propague al documento
   });
 
-// aqui se guardan los cambios-
-document.getElementById("saveChanges").addEventListener("click", function () {
-  let newTitle = document.getElementById("editTitle").value;
-  let newSubtitle = document.getElementById("editSubtitle").value;
-  document.querySelector(".profile__content-title").textContent = newTitle;
-  document.querySelector(".profile__content-subtitle").textContent = newSubtitle;
-  document.getElementById("editPopup").style.display = "none";
+  // Evento para guardar los cambios
+  document.getElementById("saveChanges").addEventListener("click", function () {
+    const newTitle = document.getElementById("editTitle").value;
+    const newSubtitle = document.getElementById("editSubtitle").value;
+    if (validateTitle(newTitle) && validateSubtitle(newSubtitle)) {
+      document.querySelector(".profile__content-title").textContent = newTitle;
+      document.querySelector(".profile__content-subtitle").textContent = newSubtitle;
+      editPopup.style.display = "none";
+    }
+  });
+
+  // Evento para cerrar la ventana emergente haciendo clic en cualquier parte fuera de ella
+  document.addEventListener("click", function(event) {
+    if (event.target !== editPopup && !editPopup.contains(event.target) && event.target !== editButton) {
+      editPopup.style.display = "none";
+    }
+  });
+
+  // Evento para cerrar la ventana emergente haciendo clic en el botón de cierre
+  document.querySelector(".popup__close-edit").addEventListener("click", function () {
+    editPopup.style.display = "none";
+  });
+
+  // Evento para cerrar la ventana emergente cuando se presiona la tecla "Esc"
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+      editPopup.style.display = "none";
+    }
+  });
 });
 
-// aqui se cierra la ventana
-document
-  .querySelector(".popup__close-edit")
-  .addEventListener("click", function () {
-    document.getElementById("editPopup").style.display = "none";
-  });
 
 
 // modificando el estilo del popup con DOM (popup editar)
@@ -51,7 +72,6 @@ saveChangesButton.addEventListener("mouseleave", function () {
   saveChangesButton.style.opacity = 1;
 });
 
-//popup de añadir lugar (cards)
 document
   .querySelector(".profile__content-add")
   .addEventListener("click", function () {
@@ -75,58 +95,90 @@ function addTrashButtonEvents() {
   });
 }
 
+
+
 addTrashButtonEvents();
 
-//aqui se añade un nuevo lugar card
+//ventana añadir lugar
+document.addEventListener("DOMContentLoaded", function() {
+  const saveChangesEditButton = document.getElementById("saveChangesEdit");
+  const addPopup = document.getElementById("addPopup");
+  const addButton = document.querySelector(".profile__content-add");
+  const closeAddButton = document.querySelector(".popup__close-add");
 
-document.getElementById("saveChangesEdit").addEventListener("click", function () {
-  let title = document.getElementById("editPlace").value;
-  let imageUrl = document.getElementById("editImage").value;
+  // Función para cerrar la ventana emergente
+  function closePopup() {
+    addPopup.style.display = "none";
+  }
 
-  let newCard = document.createElement("div");
-  newCard.classList.add("cards__new");
+  // Evento para abrir la ventana emergente al hacer clic en el botón de añadir
+  addButton.addEventListener("click", function (event) {
+    addPopup.style.display = "block";
+    event.stopPropagation(); // Evitar que el evento se propague al documento
+  });
 
-  let trashButton = document.createElement("button");
-  trashButton.classList.add("cards__one-trash");
+  // Evento para guardar los cambios y agregar una nueva tarjeta al hacer clic en el botón
+  saveChangesEditButton.addEventListener("click", function () {
+    let title = document.getElementById("editPlace").value;
+    let imageUrl = document.getElementById("editImage").value;
 
-  let image = document.createElement("img");
-  image.classList.add("cards__new-image");
-  image.src = imageUrl;
+    let newCard = document.createElement("div");
+    newCard.classList.add("cards__new");
 
-  let name = document.createElement("h3");
-  name.classList.add("cards__one-name");
-  name.textContent = title;
+    let trashButton = document.createElement("button");
+    trashButton.classList.add("cards__one-trash");
 
-  let span = document.createElement("span");
-  let heartButton = document.createElement("button");
-  heartButton.classList.add("cards__one-heart");
+    let image = document.createElement("img");
+    image.classList.add("cards__new-image");
+    image.src = imageUrl;
 
-  span.appendChild(heartButton);
-  name.appendChild(span);
-  newCard.appendChild(trashButton);
-  newCard.appendChild(image);
-  newCard.appendChild(name);
+    let name = document.createElement("h3");
+    name.classList.add("cards__one-name");
+    name.textContent = title;
 
-  let cardsSection = document.querySelector(".cards");
-  cardsSection.insertBefore(newCard, cardsSection.firstChild);
+    let span = document.createElement("span");
+    let heartButton = document.createElement("button");
+    heartButton.classList.add("cards__one-heart");
 
-  document.getElementById("modal-image").alt = title;
+    span.appendChild(heartButton);
+    name.appendChild(span);
+    newCard.appendChild(trashButton);
+    newCard.appendChild(image);
+    newCard.appendChild(name);
 
-  document.getElementById("addPopup").style.display = "none";
-  document.getElementById("editPlace").value = "";
-  document.getElementById("editImage").value = "";
-  removeCard(trashButton);
-  addTrashButtonEvents();
+    let cardsSection = document.querySelector(".cards");
+    cardsSection.insertBefore(newCard, cardsSection.firstChild);
+
+    document.getElementById("modal-image").alt = title;
+
+    closePopup(); // Cerrar la ventana emergente después de agregar la tarjeta
+    document.getElementById("editPlace").value = "";
+    document.getElementById("editImage").value = "";
+    removeCard(trashButton);
+    addTrashButtonEvents();
+  });
+
+  // Evento para cerrar la ventana emergente al hacer clic fuera de ella
+  document.addEventListener("click", function(event) {
+    if (event.target !== addPopup && !addPopup.contains(event.target) && event.target !== addButton) {
+      closePopup();
+    }
+  });
+
+  // Evento para cerrar la ventana emergente al presionar la tecla Escape
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+      closePopup();
+    }
+  });
+
+  // Evento para cerrar la ventana emergente al hacer clic en el botón de cerrar
+  closeAddButton.addEventListener("click", function() {
+    closePopup();
+  });
 });
 
 
-
-// aqui se cierra la ventana
-document
-  .querySelector(".popup__close-add")
-  .addEventListener("click", function () {
-    document.getElementById("addPopup").style.display = "none";
-  });
 
 // modificando el estilo del popup con DOM (popup añadir)
 const editPlace = document.getElementById("editPlace");
@@ -173,176 +225,51 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-//abrir ventanas para popup de imagenes
+//Ventana emergente con imagenes
+
 document.addEventListener("DOMContentLoaded", function () {
-  const cards = document.querySelectorAll(".cards__one");
+  const modal = document.getElementById("modal");
+  const close = document.querySelector(".close");
 
-  cards.forEach(function (card) {
-    const image = card.querySelector(".cards__one-image");
-    const name = card.querySelector(".cards__one-name").textContent;
+  close.addEventListener("click", closeModal);
 
-
-    image.addEventListener("click", function () {
-      const modal = document.getElementById("modal");
-      const modalImage = document.getElementById("modal-image");
-      const modalCaption = document.getElementById("modal-caption");
-
-      modal.style.display = "block";
-      modalImage.src = image.src;
-      modalCaption.textContent = name;
+  // Event listener para abrir el modal al hacer clic en las "cards" de imágenes
+  document.querySelectorAll(".cards__new-image").forEach(function(element) {
+    element.addEventListener("click", function(event) {
+      const imageName = element.alt;
+      const imageSrc = element.src;
+      openModal(imageSrc, imageName);
     });
   });
 
-  const close = document.getElementsByClassName("close")[0];
-  close.addEventListener("click", function () {
-    document.getElementById("modal").style.display = "none";
+  // Event listener para cerrar el modal al presionar la tecla Escape
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+      closeModal();
+    }
+  });
+
+  // Event listener para cerrar el modal al hacer clic fuera de él
+  window.addEventListener("click", function(event) {
+    if (event.target === modal) {
+      closeModal();
+    }
   });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  const cards = document.querySelectorAll(".cards__two");
+function openModal(imageSrc, caption) {
+  const modal = document.getElementById("modal");
+  const modalImage = document.getElementById("modal-image");
+  const modalCaption = document.getElementById("modal-caption");
 
-  cards.forEach(function (card) {
-    const image = card.querySelector(".cards__two-image");
-    const name = card.querySelector(".cards__two-name").textContent;
-
-    image.addEventListener("click", function () {
-      const modal = document.getElementById("modal");
-      const modalImage = document.getElementById("modal-image");
-      const modalCaption = document.getElementById("modal-caption");
-
-      modal.style.display = "block";
-      modalImage.src = image.src;
-      modalCaption.textContent = name;
-    });
-  });
-
-  const close = document.getElementsByClassName("close")[0];
-  close.addEventListener("click", function () {
-    document.getElementById("modal").style.display = "none";
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const cards = document.querySelectorAll(".cards__three");
-
-  cards.forEach(function (card) {
-    const image = card.querySelector(".cards__three-image");
-    const name = card.querySelector(".cards__three-name").textContent;
-
-    image.addEventListener("click", function () {
-      const modal = document.getElementById("modal");
-      const modalImage = document.getElementById("modal-image");
-      const modalCaption = document.getElementById("modal-caption");
-
-      modal.style.display = "block";
-      modalImage.src = image.src;
-      modalCaption.textContent = name;
-    });
-  });
-
-  const close = document.getElementsByClassName("close")[0];
-  close.addEventListener("click", function () {
-    document.getElementById("modal").style.display = "none";
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const cards = document.querySelectorAll(".cards__for");
-
-  cards.forEach(function (card) {
-    const image = card.querySelector(".cards__for-image");
-    const name = card.querySelector(".cards__for-name").textContent;
-
-    image.addEventListener("click", function () {
-      const modal = document.getElementById("modal");
-      const modalImage = document.getElementById("modal-image");
-      const modalCaption = document.getElementById("modal-caption");
-
-      modal.style.display = "block";
-      modalImage.src = image.src;
-      modalCaption.textContent = name;
-    });
-  });
-
-  const close = document.getElementsByClassName("close")[0];
-  close.addEventListener("click", function () {
-    document.getElementById("modal").style.display = "none";
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const cards = document.querySelectorAll(".cards__five");
-
-  cards.forEach(function (card) {
-    const image = card.querySelector(".cards__five-image");
-    const name = card.querySelector(".cards__five-name").textContent;
-
-    image.addEventListener("click", function () {
-      const modal = document.getElementById("modal");
-      const modalImage = document.getElementById("modal-image");
-      const modalCaption = document.getElementById("modal-caption");
-
-      modal.style.display = "block";
-      modalImage.src = image.src;
-      modalCaption.textContent = name;
-    });
-  });
-
-  const close = document.getElementsByClassName("close")[0];
-  close.addEventListener("click", function () {
-    document.getElementById("modal").style.display = "none";
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const cards = document.querySelectorAll(".cards__six");
-
-  cards.forEach(function (card) {
-    const image = card.querySelector(".cards__six-image");
-    const name = card.querySelector(".cards__six-name").textContent;
-
-    image.addEventListener("click", function () {
-      const modal = document.getElementById("modal");
-      const modalImage = document.getElementById("modal-image");
-      const modalCaption = document.getElementById("modal-caption");
-
-      modal.style.display = "block";
-      modalImage.src = image.src;
-      modalCaption.textContent = name;
-    });
-  });
-
-  const close = document.getElementsByClassName("close")[0];
-  close.addEventListener("click", function () {
-    document.getElementById("modal").style.display = "none";
-  });
-});
-
-// Función para manejar el clic en las tarjetas
-function handleCardClick(event) {
-  if (event.target.classList.contains("cards__new-image")) {
-    const modal = document.getElementById("modal");
-    const modalImage = document.getElementById("modal-image");
-    const modalCaption = document.getElementById("modal-caption");
-
-    modal.style.display = "block";
-    modalImage.src = event.target.src;
-    modalCaption.textContent = event.target.alt;
-  }
+  modal.style.display = "block";
+  modalImage.src = imageSrc;
+  modalCaption.textContent = caption;
 }
 
-document.querySelectorAll(".cards__new-image").forEach(function(image) {
-  image.addEventListener("click", handleCardClick);
-});
-
-document.getElementById("saveChangesEdit").addEventListener("click", function () {
-  document.querySelectorAll(".cards__new-image").forEach(function(image) {
-    image.addEventListener("click", handleCardClick);
-  });
-});
-
-
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
 
 
 // modificar elemento de la ventana modal
