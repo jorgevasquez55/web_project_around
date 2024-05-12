@@ -111,12 +111,11 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // Evento para abrir la ventana emergente al hacer clic en el botón de añadir
-  addButton.addEventListener("click", function (event) {
+  addButton.addEventListener("click", function(event) {
     addPopup.style.display = "block";
-    event.stopPropagation(); // Evitar que el evento se propague al documento
+    event.stopPropagation();
   });
 
-  // Evento para guardar los cambios y agregar una nueva tarjeta al hacer clic en el botón
   saveChangesEditButton.addEventListener("click", function () {
     let title = document.getElementById("editPlace").value;
     let imageUrl = document.getElementById("editImage").value;
@@ -150,10 +149,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.getElementById("modal-image").alt = title;
 
-    closePopup(); // Cerrar la ventana emergente después de agregar la tarjeta
+    closePopup();
     document.getElementById("editPlace").value = "";
     document.getElementById("editImage").value = "";
-    removeCard(trashButton);
+    addImagePopupEvent(newCard);
     addTrashButtonEvents();
   });
 
@@ -175,7 +174,37 @@ document.addEventListener("DOMContentLoaded", function() {
   closeAddButton.addEventListener("click", function() {
     closePopup();
   });
+
+  // Función para abrir el popup con la imagen al hacer clic en la tarjeta
+  function openImagePopup(imageUrl, title) {
+    const modal = document.getElementById("modal");
+    const modalImage = document.getElementById("modal-image");
+    const modalCaption = document.getElementById("modal-caption");
+
+    modalImage.src = imageUrl;
+    modalImage.alt = title;
+    modalCaption.textContent = title;
+
+    modal.style.display = "block";
+
+    // Evento para cerrar el popup al hacer clic en la "x"
+    const closePopupButton = document.querySelector(".close");
+    closePopupButton.addEventListener("click", function() {
+      modal.style.display = "none";
+    });
+  }
+
+  // Función para agregar el evento de clic a las tarjetas
+  function addImagePopupEvent(card) {
+    card.addEventListener("click", function() {
+      const imageUrl = card.querySelector("img").src;
+      const title = card.querySelector("h3").textContent;
+      openImagePopup(imageUrl, title);
+    });
+  }
+
 });
+
 
 
 

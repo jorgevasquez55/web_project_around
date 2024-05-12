@@ -33,7 +33,7 @@ function validateSubtitle(subtitle) {
       subtitleError.textContent = `Usa al menos 2 caracteres, has introducido ${subtitleLength} caracter.`;
       return false;
   } else {
-      subtitleError.textContent = ""; /
+      subtitleError.textContent = "";
   }
   return true;
 }
