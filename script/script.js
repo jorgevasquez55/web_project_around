@@ -95,163 +95,7 @@ function addTrashButtonEvents() {
 }
 
 
-
 addTrashButtonEvents();
-
-//ventana añadir lugar
-document.addEventListener("DOMContentLoaded", function() {
-  const saveChangesEditButton = document.getElementById("saveChangesEdit");
-  const addPopup = document.getElementById("addPopup");
-  const addButton = document.querySelector(".profile__content-add");
-  const closeAddButton = document.querySelector(".popup__close-add");
-
-  // Función para cerrar la ventana emergente
-  function closePopup() {
-    addPopup.style.display = "none";
-  }
-
-  // Evento para abrir la ventana emergente al hacer clic en el botón de añadir
-  addButton.addEventListener("click", function(event) {
-    addPopup.style.display = "block";
-    event.stopPropagation();
-  });
-
-  saveChangesEditButton.addEventListener("click", function () {
-    let title = document.getElementById("editPlace").value;
-    let imageUrl = document.getElementById("editImage").value;
-
-    let newCard = document.createElement("div");
-    newCard.classList.add("cards__new");
-
-    let trashButton = document.createElement("button");
-    trashButton.classList.add("cards__one-trash");
-
-    let image = document.createElement("img");
-    image.classList.add("cards__new-image");
-    image.src = imageUrl;
-
-    let name = document.createElement("h3");
-    name.classList.add("cards__one-name");
-    name.textContent = title;
-
-    let span = document.createElement("span");
-    let heartButton = document.createElement("button");
-    heartButton.classList.add("cards__one-heart");
-
-    span.appendChild(heartButton);
-    name.appendChild(span);
-    newCard.appendChild(trashButton);
-    newCard.appendChild(image);
-    newCard.appendChild(name);
-
-    let cardsSection = document.querySelector(".cards");
-    cardsSection.insertBefore(newCard, cardsSection.firstChild);
-
-    document.getElementById("modal-image").alt = title;
-
-    closePopup();
-    document.getElementById("editPlace").value = "";
-    document.getElementById("editImage").value = "";
-    addImagePopupEvent(newCard);
-    addTrashButtonEvents();
-  });
-
-  // Evento para cerrar la ventana emergente al hacer clic fuera de ella
-  document.addEventListener("click", function(event) {
-    if (event.target !== addPopup && !addPopup.contains(event.target) && event.target !== addButton) {
-      closePopup();
-    }
-  });
-
-  // Evento para cerrar la ventana emergente al presionar la tecla Escape
-  document.addEventListener("keydown", function(event) {
-    if (event.key === "Escape") {
-      closePopup();
-    }
-  });
-
-  // Evento para cerrar la ventana emergente al hacer clic en el botón de cerrar
-  closeAddButton.addEventListener("click", function() {
-    closePopup();
-  });
-
-  // Función para abrir el popup con la imagen al hacer clic en la tarjeta
-  function openImagePopup(imageUrl, title) {
-    const modal = document.getElementById("modal");
-    const modalImage = document.getElementById("modal-image");
-    const modalCaption = document.getElementById("modal-caption");
-
-    modalImage.src = imageUrl;
-    modalImage.alt = title;
-    modalCaption.textContent = title;
-
-    modal.style.display = "block";
-
-    // Evento para cerrar el popup al hacer clic en la "x"
-    const closePopupButton = document.querySelector(".close");
-    closePopupButton.addEventListener("click", function() {
-      modal.style.display = "none";
-    });
-  }
-
-  // Función para agregar el evento de clic a las tarjetas
-  function addImagePopupEvent(card) {
-    card.addEventListener("click", function() {
-      const imageUrl = card.querySelector("img").src;
-      const title = card.querySelector("h3").textContent;
-      openImagePopup(imageUrl, title);
-    });
-  }
-
-});
-
-
-
-
-// modificando el estilo del popup con DOM (popup añadir)
-const editPlace = document.getElementById("editPlace");
-const editImage = document.getElementById("editImage");
-const saveChangesButtonEdit = document.getElementById("saveChangesEdit");
-
-editPlace.style.borderStyle = "none";
-editPlace.style.fontFamily = "inter";
-editPlace.style.borderBottom = "1px solid";
-editPlace.style.width = "inherit";
-
-editImage.style.fontStyle = "inter";
-editImage.style.borderStyle = "none";
-editImage.style.borderBottom = "1px solid";
-editImage.style.width = "inherit";
-
-saveChangesButtonEdit.style.backgroundColor = "black";
-saveChangesButtonEdit.style.color = "white";
-saveChangesButtonEdit.style.border = "none";
-saveChangesButtonEdit.style.padding = "10px 20px";
-saveChangesButtonEdit.style.cursor = "pointer";
-saveChangesButtonEdit.style.width = "inherit";
-saveChangesButtonEdit.style.marginTop = "30px";
-
-//opacidad sobre el botón
-saveChangesButtonEdit.addEventListener("mouseenter", function () {
-  saveChangesButtonEdit.style.opacity = 0.5;
-});
-
-saveChangesButtonEdit.addEventListener("mouseleave", function () {
-  saveChangesButtonEdit.style.opacity = 1;
-});
-
-//corazon (like)
-
-document.addEventListener("DOMContentLoaded", function () {
-  let heartButtons = document.querySelectorAll(".cards__one-heart");
-
-  heartButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-      let image = this.parentNode.querySelector(".cards__one-heart");
-      image.classList.toggle("select");
-    });
-  });
-});
 
 //Ventana emergente con imagenes
 
@@ -296,7 +140,6 @@ function closeModal() {
 }
 
 
-// modificar elemento de la ventana modal
 const modalCaption = document.getElementById("modal-caption");
 modalCaption.style.color = "#ffff";
 modalCaption.style.fontSize = "0.55rem";
@@ -304,10 +147,10 @@ modalCaption.style.fontWeight = "400";
 modalCaption.style.marginTop = "20px";
 modalCaption.style.marginLeft = "60px";
 
-// Verificar el ancho de la ventana
+
 let windowWidth = window.innerWidth;
 
-// Establecer el margen izquierdo dependiendo del ancho de la ventana
+
 if (windowWidth <= 320) {
   modalCaption.style.marginLeft = "150px";
 } else {

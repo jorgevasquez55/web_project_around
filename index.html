@@ -140,8 +140,12 @@
 
         </section>
 
-       <!--pop up que permite añadir un nuevo lugar-->
-       <div id="addPopup" class="popup">
+
+
+  <!-- Popup para añadir un nuevo lugar -->
+
+
+  <div id="addPopup" class="popup">
         <div class="popup__container">
           <h2>Nuevo lugar</h2>
           <input type="text" id="editPlace" placeholder="Título" />
@@ -152,6 +156,20 @@
         </div>
         <button class="popup__close-add"></button>
       </div>
+  <!-- Plantilla de tarjeta -->
+  <!-- Plantilla de tarjeta -->
+<template id="card-template">
+  <div class="card">
+    <button class="card__trash"></button>
+    <img class="card__image" alt="Card Image"/>
+    <div class="card__details">
+      <h3 class="card__text"></h3>
+      <button class="card__heart"></button>
+    </div>
+  </div>
+</template>
+
+
 
         <footer class="footer">
           <p>&copy; 2024 Jorge Luis Vasquez</p>
@@ -160,5 +178,9 @@
     </div>
     <script src="./script/script.js"></script>
     <script src="./script/validate.js"></script>
+    <script type="module" src="./script/Card.js"></script>
+    <script type="module" src="./script/FormValidator.js"></script>
+    <script  type="module" src="./script/index.js"></script>
+    <script type="module" src="./script/utils.js"></script>
   </body>
 </html>
