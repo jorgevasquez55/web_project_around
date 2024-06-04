@@ -20,3 +20,4 @@ function openImagePopup(imageUrl, title) {
 }
 
 export { closePopup, openImagePopup };
+
