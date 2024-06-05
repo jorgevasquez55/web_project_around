@@ -14,10 +14,9 @@ function openImagePopup(imageUrl, title) {
   modal.style.display = "block";
 
   const closePopupButton = document.querySelector(".close");
-  closePopupButton.addEventListener("click", function() {
+  closePopupButton.addEventListener("click", function () {
     closePopup(modal);
   });
 }
 
 export { closePopup, openImagePopup };
-
