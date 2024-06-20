@@ -21,6 +21,7 @@ import {
 } from "./scripts/Const.js";
 
 const popupImage = new PopupWithImage(popupImageSelector);
+
 const popupProfile = new PopupWithForm(popupProfileSelector, (inputValues) => {
   profileName.textContent = inputValues.name;
   profileJob.textContent = inputValues.job;
@@ -34,7 +35,7 @@ const popupAddButton = new PopupWithForm(popupAddSelector, (inputValues) => {
     "#card-template",
     {
       handleClickImage: () => {
-        popupImage.open(inputValues.link, inputValues.title);
+        popupImage.open(inputValues.url, inputValues.title);
       },
     }
   );
