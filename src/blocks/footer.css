@@ -1,0 +1,27 @@
+.footer {
+  padding-bottom: 36px;
+}
+
+.footer__copyright {
+  color: #545454;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
+  text-decoration: none;
+align-items: center;
+  display: flex;
+}
+
+@media screen and (min-width: 880px) {
+  .footer {
+    width: 880px;
+    height: 18px;
+    padding-bottom: 60px;
+  }
+
+  .footer__copyright {
+    font-size: 18px;
+  }
+}
