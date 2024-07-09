@@ -1,10 +1,17 @@
 .elements {
-  width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  grid-row-gap: 15px;
+  flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 1em;
-  padding-bottom: 4em;
+  width: 282px;
+}
+
+@media (min-width: 768px) {
+  .elements {
+    display: grid;
+    width: 768px;
+    grid-template-columns: repeat(3, 236px);
+    grid-gap: 13px;
+    justify-content: center;
+  }
 }

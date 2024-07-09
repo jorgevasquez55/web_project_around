@@ -1,38 +1,120 @@
 .element {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 281px;
   height: 361px;
-  border-radius: .62em;
-  background: #FFF;
-  display:flex;
-  flex-direction:column;
-  overflow: hidden;
-  position:relative;
+  position: relative;
 }
 
 .element__image {
-  width:282px;
-  height:282px;
-  object-fit: cover;
-  cursor:pointer;
-  transition: all 0.3s ease-in-out;
-  background-color: #000;
+  width: 282px;
+  height: 255px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
-.element__info {
+.element__rectangle {
   display: flex;
+  justify-content: center;
   align-items: center;
-  margin: auto;
+  width: 282px;
+  height: 70px;
+  background-color: #ffffff;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
-.element__title {
-  color: #000;
-  font-family: Inter;
-  font-size: 24px;
-  font-style: normal;
+.element__place {
+  width: 205px;
+  font-size: 22px;
   font-weight: 900;
-  line-height: normal;
-  margin:0;
-  text-overflow: ellipsis;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #000000;
   white-space: nowrap;
   overflow: hidden;
-  width:238px;
+  text-overflow: ellipsis;
+}
+
+.element__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline-start: auto;
+  background-color: #ffffff;
+  width: 20px;
+  height: 25px;
+  margin-left: 0px;
+  border: none;
+  background-image: url(../images/corazon_rojo.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.element__button_liked {
+  width: 20px;
+  height: 24px;
+  background-image: url(../images/boton-like-corazon.jpg);
+}
+
+.element__button:hover {
+  opacity: 0.5;
+}
+
+.element__likes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  width: 21px;
+}
+
+.element__likes-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 2px;
+  color: rgb(177, 5, 5);
+}
+
+.element__trash-image {
+  position: absolute;
+  top: 18px;
+  right: 15px;
+}
+
+.element__trash-image:hover {
+  opacity: 0.5;
+}
+
+@media (min-width: 768px) {
+  .element {
+    width: 236px;
+    height: 315px;
+  }
+
+  .element__image {
+    width: 236px;
+  }
+
+  .element__rectangle {
+    width: 236px;
+    height: 60px;
+  }
+
+  .element__place {
+    width: 175px;
+    font-size: 20px;
+  }
+
+  .element__button:active {
+    opacity: 0.5;
+  }
+
+  .element__trash-image:active {
+    opacity: 0.5;
+  }
 }
